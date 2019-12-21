@@ -1,32 +1,4 @@
-# My Health app
-
-This is my final project of my Master degree in University of Piraeus (CS).
-
-My primary goal is to create an app which will help people to save their examinations from doctors and hospitals.
-
-Also, it was challenge for me to implement this app with 
- state of the art techonologies like mongoDB, nodeJS and react.
-
-Some of the techonologies, frameworks and libraries:
-1. DataBase
- a.noSQL mongo DB
- b.GUI 3T
-
- 
-
-2. Framework
- a. NodeJS
- b. express
- 
-3.Libraries
- - React
- - npm libraries
- - mongoose
- - middleware
- - bcryptjs
- - jsonwebtoken
- - jsonwebtoken
- - validator
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -94,4 +66,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
