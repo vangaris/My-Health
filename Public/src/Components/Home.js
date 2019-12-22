@@ -1,4 +1,5 @@
 import React from 'react';
+import { checkAuth } from '../Helper/jwt'
 
 class Home extends React.Component {
     constructor(props) {
@@ -6,11 +7,13 @@ class Home extends React.Component {
     }
 
     render() {
+        if (!checkAuth()) {
+            return (
+                <Login />
+            )
+        }
         return (
-            <div>
-                <p>Home</p>
-            </div>
-
+            <Login />
         );
     }
 }

@@ -6,6 +6,7 @@ var cors = require('cors');
 
 //after request opotion needed
 router.options("/users", cors());
+router.options("/users/login", cors());
 
 router.post("/users", async (req, res) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -34,6 +35,7 @@ router.get("/users", async (req, res) => {
 });
 
 router.post("/users/login", async (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
     try {
         const user = await User.findByCredentials(
             req.body.email,

@@ -1,22 +1,26 @@
 import React from 'react';
-import { getToken } from '../helper/jwt'
+import { checkAuth } from '../Helper/jwt'
 
 class Home extends React.Component {
     constructor(props) {
         super(props)
     }
 
-    componentDidMount() {
-        const jwt = getToken()
-        console.log(jwt)
-        if (!jwt) {
-            return alert('no')
-        }
 
-        alert('Yes')
+
+    componentDidMount() {
+
     }
 
     render() {
+
+        if (checkAuth()) {
+            return (
+                <div>
+                    you have to login
+                </div>
+            )
+        }
         return (
             <div>
                 <p>Home</p>

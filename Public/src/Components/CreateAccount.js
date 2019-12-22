@@ -3,6 +3,7 @@ import axios from "axios"
 import '../App.css';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { checkAuth } from '../Helper/jwt'
 
 class CreateAccount extends React.Component {
     constructor(props) {
@@ -16,8 +17,6 @@ class CreateAccount extends React.Component {
             emailError: '',
             age: 0,
             ageError: '',
-            // username: '',
-            // usernameError: '',
             password: '',
             passError: '',
         }
@@ -120,8 +119,6 @@ class CreateAccount extends React.Component {
                 emailError: '',
                 age: 0,
                 ageError: '',
-                // username: '',
-                // usernameError: '',
                 password: '',
                 passError: '',
             })
@@ -129,6 +126,11 @@ class CreateAccount extends React.Component {
     }
 
     render() {
+        if (checkAuth()) {
+            return (
+                <div> You are logged in</div>
+            )
+        }
         return (
             <div className="container">
                 <form method="post" name="form" onSubmit={this.onSubmit} >
@@ -155,19 +157,16 @@ class CreateAccount extends React.Component {
                         helperText={this.state.emailError} /> <br />
                     <TextField
                         type="number"
-                        required name="age"
+                        required
+                        name="age"
                         value={this.state.age}
                         onChange={this.handleChange}
                         placeholder="Age"
                         helperText={this.state.ageError} /> <br />
-                    {/* <TextField
-                        required name="username"
-                        value={this.state.username}
-                        onChange={this.handleChange}
-                        placeholder="Username"
-                        helperText={this.state.usernameError} /> <br /> */}
                     <TextField
-                        required name="password"
+                        required
+                        name="password"
+                        type="password"
                         value={this.state.password}
                         onChange={this.handleChange}
                         placeholder="Password"

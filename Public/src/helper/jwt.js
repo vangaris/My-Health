@@ -1,3 +1,3 @@
-export const getToken = () => {
-    return localStorage.getItem('jtw')
+export const checkAuth = () => {
+    return localStorage.getItem('jwt')
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import axios from "axios"
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-const jwt = require('../helper/jwt')
 
 class Login extends React.Component {
     constructor(props) {
@@ -85,6 +84,7 @@ class Login extends React.Component {
                         placeholder="Email" /> <br />
                     <TextField
                         required
+                        type="password"
                         name="password"
                         value={this.state.password}
                         onChange={this.handleChange}
