@@ -38,18 +38,6 @@ const userSchema = new mongoose.Schema({
             }
         }
     },
-    // username: {
-    //     unique: true,
-    //     type: String,
-    //     required: true,
-    //     minlength: 6,
-    //     trim: true,
-    //     validate(value) {
-    //         if (value.toLowerCase().includes('username')) {
-    //             throw new Error('Password is not allowed')
-    //         }
-    //     }
-    // },
     password: {
         type: String,
         required: true,

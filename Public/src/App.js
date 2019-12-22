@@ -2,7 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import CreateAccount from './Components/CreateAccount'
-import Home from './Components/Home'
+import Login from './Components/Login'
+import Examinations from './Components/Examinations'
 import Navbar from './Components/Navbar'
 
 class App extends React.Component {
@@ -36,7 +37,8 @@ class App extends React.Component {
         <br />
         <Navbar />
         <Route path="/users" exact component={CreateAccount} />
-        <Route path="/home" component={Home} />
+        <Route path="/users/login" component={Login} />
+        <Route path="/examinations" component={Examinations} />
       </Router>
 
     );

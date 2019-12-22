@@ -2,15 +2,15 @@ import React from 'react';
 import axios from "axios"
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+const jwt = require('../helper/jwt')
 
 class Login extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: '',
-            usernameError: '',
+            email: '',
             password: '',
-            passError: '',
+            loginError: '',
         }
         this.handleChange = this.handleChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -23,84 +23,52 @@ class Login extends React.Component {
         });
     }
 
-    serverSideValidationCreateAcount = async () => {
+    loginValidation = async () => {
         let isError = false
-        const accounts = 'http://localhost:3000/users'
+        const loginUser = 'http://localhost:3000/users/login'
 
-        const serverError = {
-            emailError: ''
+        const errors = {
+            loginError: ''
         }
 
-        const user = {
-            name: this.state.name,
-            phone: this.state.phone,
+        const LoingCredentials = {
             email: this.state.email,
-            age: this.state.age,
-            username: this.state.username,
             password: this.state.password,
         }
 
-        await axios.post(accounts, user)
-            .then((user) => { console.log(user) })
+        await axios.post(loginUser, LoingCredentials)
+            .then((res) => {
+                localStorage.setItem('jwt', res.data.token)
+            })
             .catch((error) => {
-                console.log(error.response.data.errmsg)
-                if (error.response.data.errmsg) {
-                    isError = true
-                    console.log(isError)
-                    serverError.emailError = 'email exists'
-                }
-
+                console.log(error.data)
+                isError = true
+                errors.loginError = 'invalid email or password'
+                console.log(errors)
                 if (isError) {
                     this.setState({
                         ...this.state,
-                        ...serverError
+                        ...errors
                     })
+
+                    console.log(this.state)
                 }
             })
-        return isError
-    }
 
-    clientSidevalidationCreateAccount = () => {
-        let isError = false
-        const errors = {
-            usernameError: '',
-            passError: '',
-        }
-        if (this.state.phone.length != 10) {
-            isError = true
-            errors.phoneError = 'Phone number must be 10 digit'
-        }
-
-        if (!this.state.email.includes('@')) { // να το αλλάξω!!!!!
-            isError = true
-            errors.emailError = 'requires valid email'
-        }
-
-        if (isError) {
-            this.setState({
-                ...this.state,
-                ...errors
-            })
-        }
         return isError
     }
 
     onSubmit(event) {
         event.preventDefault()
-        let clientSideError = this.clientSidevalidationCreateAccount()
 
-        if (clientSideError) {
-            return false
-        }
-        this.serverSideValidationCreateAcount().then((isError) => {
+        this.loginValidation().then((isError) => {
             if (isError) {
                 return false
             }
             this.setState({
-                username: '',
-                usernameError: '',
+                email: '',
                 password: '',
-                passError: '',
+                loginError: '',
             })
         })
     }
@@ -110,17 +78,18 @@ class Login extends React.Component {
             <div className="container">
                 <form method="post" name="form" onSubmit={this.onSubmit} >
                     <TextField
-                        required name="username"
-                        value={this.state.username}
+                        required
+                        name="email"
+                        value={this.state.email}
                         onChange={this.handleChange}
-                        placeholder="Username"
-                        helperText={this.state.usernameError} /> <br />
+                        placeholder="Email" /> <br />
                     <TextField
-                        required name="password"
+                        required
+                        name="password"
                         value={this.state.password}
                         onChange={this.handleChange}
                         placeholder="Password"
-                        helperText={this.state.passError} /> <br /><br />
+                        helperText={this.state.loginError} /> <br /><br />
                     <Button
                         variant="contained"
                         color="primary"

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import CreateAccount from './CreateAccount'
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -14,7 +13,10 @@ class Navbar extends React.Component {
                 <div className="collpase navbar-collapse">
                     <ul className="navbar-nav mr-auto">
                         <li className="navbar-item" >
-                            <Link className="nav-link" to='/Home'>Home</Link>
+                            <Link className="nav-link" to='/users/login'>Login</Link>
+                        </li>
+                        <li className="navbar-item" >
+                            <Link className="nav-link" to='/examinations'>Examinations</Link>
                         </li>
                         <li className="navbar-item" >
                             <Link className="nav-link" to='/users'>create Account</Link>

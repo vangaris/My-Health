@@ -45,7 +45,6 @@ class CreateAccount extends React.Component {
             phone: this.state.phone,
             email: this.state.email,
             age: this.state.age,
-            // username: this.state.username,
             password: this.state.password,
         }
 
@@ -65,6 +64,8 @@ class CreateAccount extends React.Component {
                         ...serverError
                     })
                 }
+
+                console.log(this.state)
             })
         return isError
     }
@@ -76,7 +77,6 @@ class CreateAccount extends React.Component {
             phoneError: '',
             emailError: '',
             ageError: '',
-            // usernameError: '',
             passError: '',
         }
         if (this.state.phone.length != 10) {
@@ -107,12 +107,8 @@ class CreateAccount extends React.Component {
         event.preventDefault()
         let clientSideError = this.clientSidevalidationCreateAccount()
 
-        if (clientSideError) {
-            return false
-        }
-
         this.serverSideValidationCreateAcount().then((isError) => {
-            if (isError) {
+            if (isError || clientSideError) {
                 return false
             }
             this.setState({
