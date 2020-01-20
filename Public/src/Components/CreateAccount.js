@@ -63,7 +63,6 @@ class CreateAccount extends React.Component {
                         ...serverError
                     })
                 }
-
                 console.log(this.state)
             })
         return isError
@@ -126,11 +125,11 @@ class CreateAccount extends React.Component {
     }
 
     render() {
-        if (checkAuth()) {
-            return (
-                <div> You are logged in</div>
-            )
-        }
+        // if (checkAuth()) {
+        //     return (
+        //         <div> You are logged in</div>
+        //     )
+        // }
         return (
             <div className="container">
                 <form method="post" name="form" onSubmit={this.onSubmit} >

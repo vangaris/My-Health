@@ -18,21 +18,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-
     fetch("http://localhost:3000/test")
       .then(response => response.json())
       .then(res => {
         console.log(res)
         this.setState({ person: { name: 'giannis', lastname: 'takis' } })
-
-
       });
-
   }
 
   render() {
     return (
-
       <Router>
         <br />
         <Navbar />
@@ -40,7 +35,6 @@ class App extends React.Component {
         <Route path="/users/login" component={Login} />
         <Route path="/examinations" component={Examinations} />
       </Router>
-
     );
   }
 }

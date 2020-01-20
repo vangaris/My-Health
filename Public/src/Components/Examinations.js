@@ -10,6 +10,12 @@ class Home extends React.Component {
 
     componentDidMount() {
 
+        fetch("http://localhost:3000/examinations")
+            .then(response => response.json())
+            .then(res => {
+                alert('e')
+                console.log(res)
+            });
     }
 
     render() {
