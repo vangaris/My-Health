@@ -27,7 +27,7 @@
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
     "mongodb": "^3.1.10",
-    "mongoose": "^5.3.16",
+    "mongoose": "^5.7.5",
     "react-datepicker": "^2.10.1",
     "react-router-dom": "^5.1.2",
     "validator": "^10.9.0"
