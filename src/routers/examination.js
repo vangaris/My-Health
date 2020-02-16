@@ -64,6 +64,7 @@ router.patch("/examinations/:id", auth, async (req, res) => {
 //GET /examinations?limit = 10&skip=20
 //GET /examinations?sortBy = createdAt:desc 
 router.get("/examinations", auth, async (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
     const match = {}
     const sort = {}
 
@@ -116,6 +117,7 @@ router.get("/examinations/:id", auth, async (req, res) => {
 });
 
 router.post("/examinations", auth, async (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
     const examination = new Examination({
         ...req.body,
         owner: req.user._id
