@@ -2,6 +2,7 @@ import React from 'react'
 import FormInput from '../../components/form-input/form-input.component'
 import './sign-in.style.scss'
 import CustomButton from '../../components/custom-button/custom-button.component'
+import { login } from '../../database/utils'
 
 class Signin extends React.Component {
     constructor(props) {
@@ -9,14 +10,31 @@ class Signin extends React.Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            token: ''
         }
     }
 
-    handleSubmit = event => {
+    handleSubmit = async (event) => {
         event.preventDefault()
-        console.log(this.state)
-        this.setState({ email: '', password: '' })
+
+        const url = 'http://localhost:3000/users/login'
+
+        const accesToken = await login(url, this.state)
+
+        if (accesToken) {
+            this.setState({
+                email: this.state.email,
+                password: this.state.password,
+                token: accesToken
+            }, () => {
+                console.log(this.state)
+            })
+
+            localStorage.setItem('token', this.state.token)
+        }
+
+        //this.setState({ email: '', password: '' })
     }
 
     handleChange = event => {
