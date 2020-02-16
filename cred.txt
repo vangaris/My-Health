@@ -1,0 +1,2 @@
+ /users/avangelis/mongodb/bin/mongod.exe --dbpath=/users/avangelis/mongodb-data
+npm run dev
