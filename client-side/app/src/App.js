@@ -19,7 +19,6 @@ class App extends React.Component {
 
   componentDidMount() {
     const token = localStorage.getItem('token')
-
     console.log(token)
   }
 
@@ -28,7 +27,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header token />
         <Switch>
           <Route exact path='/' component={MyExaminations} />
           <Route path='/sign-up-sign-in' component={SingInSignUp} />

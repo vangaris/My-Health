@@ -10,8 +10,13 @@ const Header = props => (
             <Link to="/">
                 My Examinations
             </Link>
-            <Link className="option" to='/sign-up-sign-in'> Sign in
-            </Link>
+
+            {
+                props.token == null ? (
+                    <div className='option' onClick={() => localStorage.removeItem()}> SIGNG OUT </div>
+                ) : (
+                        <Link className='option' to='/sign-up-sign-in'> SIGN IN </Link>)
+            }
 
         </div>
 
