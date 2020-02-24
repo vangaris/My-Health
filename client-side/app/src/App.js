@@ -14,20 +14,27 @@ class App extends React.Component {
     super(props)
 
     this.state = {
+      currentToken: null
     }
   }
 
   componentDidMount() {
     const token = localStorage.getItem('token')
-    console.log(token)
+    this.setState({
+      currentToken: token
+    }, () => {
+      console.log(this.state)
+    })
+
   }
 
 
 
   render() {
+    const { currentToken } = this.state
     return (
       <div>
-        <Header token />
+        <Header currentToken={currentToken} />
         <Switch>
           <Route exact path='/' component={MyExaminations} />
           <Route path='/sign-up-sign-in' component={SingInSignUp} />

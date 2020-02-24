@@ -17,7 +17,6 @@ class Signin extends React.Component {
 
     handleSubmit = async (event) => {
         event.preventDefault()
-
         const url = 'http://localhost:3000/users/login'
 
         const accesToken = await login(url, this.state)

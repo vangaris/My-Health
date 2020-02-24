@@ -3,7 +3,7 @@ import './header.style.scss'
 
 import { Link } from 'react-router-dom'
 
-const Header = props => (
+const Header = ({ currentToken }) => (
     <div className="header">
 
         <div className="options">
@@ -12,10 +12,10 @@ const Header = props => (
             </Link>
 
             {
-                props.token == null ? (
-                    <div className='option' onClick={() => localStorage.removeItem()}> SIGNG OUT </div>
+                currentToken == null ? (
+                    <div className='option'> Sign in </div>
                 ) : (
-                        <Link className='option' to='/sign-up-sign-in'> SIGN IN </Link>)
+                        <Link className='option' onClick={() => localStorage.removeItem('token')} to='/sign-up-sign-in'> log out</Link>)
             }
 
         </div>
