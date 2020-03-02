@@ -3,7 +3,9 @@ import './App.css';
 import MyExaminations from './pages/my-examinations/my-examinations.component';
 import SingInSignUp from './pages/sign-in-sing-up-page/sign-in-sing-up-page.component.jsx';
 import Header from './components/header/header.components';
-import { dummyData } from './database/utils'
+import { dummyData, getExaminations } from './database/utils'
+import Examinations from './pages/examinations/examinations.compnent'
+import myExaminations from './pages/my-examinations/my-examinations.component'
 
 
 
@@ -19,12 +21,15 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const token = localStorage.getItem('token')
-    this.setState({
-      currentToken: token
-    }, () => {
-      console.log(this.state)
-    })
+    // const token = localStorage.getItem('token')
+    // this.setState({
+    //   currentToken: token
+    // }, () => {
+    //   console.log(this.state)
+    // })
+
+
+    getExaminations()
 
   }
 
@@ -36,7 +41,8 @@ class App extends React.Component {
       <div>
         <Header currentToken={currentToken} />
         <Switch>
-          <Route exact path='/' component={MyExaminations} />
+          <Route exact path='/' component={myExaminations} />
+          <Route exact path='/examinations' component={Examinations} />
           <Route path='/sign-up-sign-in' component={SingInSignUp} />
         </Switch>
       </div>

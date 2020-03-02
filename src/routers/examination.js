@@ -2,6 +2,9 @@ const express = require("express");
 const Examination = require("../models/examination");
 const router = new express.Router()
 const auth = require('../middleware/auth')
+var cors = require('cors');
+
+router.options("/examinations", cors());
 
 router.get("/test", (req, res) => {
     res.header('Access-Control-Allow-Origin', '*');

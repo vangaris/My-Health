@@ -11,11 +11,15 @@ const Header = ({ currentToken }) => (
                 My Examinations
             </Link>
 
+            <Link to="/examinations">
+                Examinations
+            </Link>
+
             {
                 currentToken == null ? (
-                    <div className='option'> Sign in </div>
+                    <Link className='option' to='/sign-up-sign-in'> Sign in </Link>
                 ) : (
-                        <Link className='option' onClick={() => localStorage.removeItem('token')} to='/sign-up-sign-in'> log out</Link>)
+                        <div className='option' onClick={() => localStorage.removeItem('token')} to='/sign-up-sign-in'> log out</div>)
             }
 
         </div>
