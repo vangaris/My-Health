@@ -1,6 +1,7 @@
 import React from 'react'
 import { getExaminations } from '../../database/utils'
 import ExaminationCard from '../../components/examinations-card/examinations-card.component'
+import './examinations.style.scss'
 
 
 class Examinations extends React.Component {
@@ -34,7 +35,6 @@ class Examinations extends React.Component {
         const { examinations, isLoading } = this.state
         return (
             <div className='examinations'>
-                <h3> Εξετάσεις σας για το επόμενο χρονικό διάστημα: </h3>
                 {examinations.map(({ _id, ...examinationsProps }, index) => {
                     return <ExaminationCard key={index} {...examinationsProps} id={_id} isLoading={isLoading} />
                 })}

@@ -1,19 +1,20 @@
 .examinations-container {
-    display: flex;
-
-    font-size: 1.2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 50%;
 
     .examinations-cart{
-      margin-top: 1em;
+      width: 80%;
       display: flex;
       flex-direction: column;
-      border-bottom: solid 1px black;
-
+      margin-bottom: 1em;
+      -moz-box-shadow:3px 3px 5px 6px #ccc;
+      -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+      box-shadow:3px 3px 5px 6px #ccc;
+      padding: 2em;
+      
       .examinations {
-        margin: .2em;
-      }
-
-      .description {
         margin: .2em;
       }
     
@@ -22,7 +23,15 @@
       }
     
       .status {
+        display: flex;
+        flex-direction: row;
         margin: .2em;
+      }
+
+      .description {
+        border-top: double 1px black;
+        margin-top: 1em;
+        padding-top: 1em;
       }
     }
   

@@ -12,7 +12,7 @@ export const submitExamination = async (examination) => {
         }
     }
 
-    const newExamination = await axios.posts(url, config, examination)
+    const newExamination = await axios.post(url, examination, config)
 
     return newExamination
 

@@ -1,0 +1,33 @@
+.profile{
+    font-size: 1.2em;
+
+    .items{
+        margin-top: 1em;
+        display: flex;
+        flex-direction: column;
+        border-bottom: solid 1px black;
+
+        .name {
+            margin: .2em;
+          }
+    
+          .phone {
+            margin: .2em;
+          }
+        
+          .email {
+            margin: .2em;
+          }
+        
+        
+          .updatedDate {
+            margin: .2em;
+          }
+          
+          .createdDate {
+            margin: .2em;
+          }
+    }
+}
+
+

@@ -7,6 +7,7 @@ var cors = require('cors');
 //after request opotion needed
 router.options("/users", cors());
 router.options("/users/login", cors());
+router.options("/users/me", cors());
 
 router.post("/users", async (req, res) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -78,6 +79,7 @@ router.post("/users/logoutAll", auth, async (req, res) => {
 });
 
 router.get("/users/me", auth, async (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
     res.send(req.user);
 });
 

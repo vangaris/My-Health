@@ -7,6 +7,7 @@ import { dummyData, getExaminations } from './database/utils'
 import Examinations from './pages/examinations/examinations.compnent'
 import HomePage from './pages/homapege/homepage.component'
 import CreateExamination from './components/create-examination/create-examination.component'
+import MyProfile from './components/myProfile/myProfile.component'
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -37,13 +38,14 @@ class App extends React.Component {
   render() {
     const { currentToken } = this.state
     return (
-      <div>
+      <div className='App'>
         <Header currentToken={currentToken} />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/examinations' component={Examinations} />
           <Route path='/sign-up-sign-in' component={SingInSignUp} />
           <Route path='/createExamination' component={CreateExamination} />
+          <Route path='/myprofile' component={MyProfile} />
         </Switch>
       </div>
 
