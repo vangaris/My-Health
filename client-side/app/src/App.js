@@ -5,9 +5,8 @@ import SingInSignUp from './pages/sign-in-sing-up-page/sign-in-sing-up-page.comp
 import Header from './components/header/header.components';
 import { dummyData, getExaminations } from './database/utils'
 import Examinations from './pages/examinations/examinations.compnent'
-import myExaminations from './pages/my-examinations/my-examinations.component'
-
-
+import HomePage from './pages/homapege/homepage.component'
+import CreateExamination from './components/create-examination/create-examination.component'
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -41,9 +40,10 @@ class App extends React.Component {
       <div>
         <Header currentToken={currentToken} />
         <Switch>
-          <Route exact path='/' component={myExaminations} />
+          <Route exact path='/' component={HomePage} />
           <Route exact path='/examinations' component={Examinations} />
           <Route path='/sign-up-sign-in' component={SingInSignUp} />
+          <Route path='/createExamination' component={CreateExamination} />
         </Switch>
       </div>
 

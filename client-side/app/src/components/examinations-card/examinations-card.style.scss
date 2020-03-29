@@ -1,0 +1,30 @@
+.examinations-container {
+    display: flex;
+
+    font-size: 1.2em;
+
+    .examinations-cart{
+      margin-top: 1em;
+      display: flex;
+      flex-direction: column;
+      border-bottom: solid 1px black;
+
+      .examinations {
+        margin: .2em;
+      }
+
+      .description {
+        margin: .2em;
+      }
+    
+      .doctor {
+        margin: .2em;
+      }
+    
+      .status {
+        margin: .2em;
+      }
+    }
+  
+
+  }

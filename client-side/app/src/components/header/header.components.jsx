@@ -5,14 +5,18 @@ import { Link } from 'react-router-dom'
 
 const Header = ({ currentToken }) => (
     <div className="header">
-
         <div className="options">
-            <Link to="/">
-                My Examinations
+
+            <Link className='option' to="/">
+                Home
             </Link>
 
-            <Link to="/examinations">
+            <Link className='option' to="/examinations">
                 Examinations
+            </Link>
+
+            <Link className='option' to="/createExamination">
+                Add Exam
             </Link>
 
             {

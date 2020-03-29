@@ -1,13 +1,15 @@
 import React from 'react'
 
-import './examinations-card.component.scss'
+import './examinations-card.style.scss'
 
-const examinationCard = ({ _id, doctor, medical_examination, completed }) => (
-    <div className="collection-item">
-        <div className="collection-footer">
-            <span className='name'> {medical_examination}</span>
-            <span className="price"> {doctor}</span>
-            <span className="price"> {completed ? <h1> completed</h1> : <h1> open </h1>}</span>
+const examinationCard = ({ id, doctor, medical_examination, completed, description }) => (
+    <div className="examinations-container">
+        <div className="examinations-cart">
+            {id}
+            <span className='examinations'><b>Εξέταση: </b> {medical_examination}</span>
+            <span className='description'><b>Σχόλια: </b> {description}</span>
+            <span className="doctor"> <b>Γιατρός: </b> {doctor}</span>
+            <span className="status"> <b >Ολοκληρώθηκε: </b> {completed ? <p > ναι </p> : <p> οχι </p>} </span>
         </div>
     </div>
 )

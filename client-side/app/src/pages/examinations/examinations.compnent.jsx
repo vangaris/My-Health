@@ -8,7 +8,8 @@ class Examinations extends React.Component {
         super(props)
 
         this.state = {
-            examinations: [{}]
+            examinations: [{}],
+            isLoading: true
         }
     }
 
@@ -17,7 +18,8 @@ class Examinations extends React.Component {
 
         if (userExaminations) {
             this.setState({
-                examinations: userExaminations
+                examinations: userExaminations,
+                isLoading: false
             }, () => {
                 console.log(this.state)
             })
@@ -29,12 +31,12 @@ class Examinations extends React.Component {
     }
 
     render() {
-        const { examinations } = this.state
-
+        const { examinations, isLoading } = this.state
         return (
-            <div>
-                {examinations.map(({ _id, ...examinationsProps }) => {
-                    return <ExaminationCard key={_id} {...examinationsProps} />
+            <div className='examinations'>
+                <h3> Εξετάσεις σας για το επόμενο χρονικό διάστημα: </h3>
+                {examinations.map(({ _id, ...examinationsProps }, index) => {
+                    return <ExaminationCard key={index} {...examinationsProps} id={_id} isLoading={isLoading} />
                 })}
             </div>
         )
