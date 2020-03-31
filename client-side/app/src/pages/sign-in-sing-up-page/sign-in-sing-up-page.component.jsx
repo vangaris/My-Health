@@ -7,8 +7,8 @@ import SingUp from '../../components/sing-up/sing-up.compnent'
 
 const SignInAndSingUpPage = () => (
     <div className="sing-in-sign-up-page">
-        <Singin />
         <SingUp />
+        <Singin />
     </div>
 )
 

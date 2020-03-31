@@ -1,31 +1,35 @@
 .profile{
-    font-size: 1.2em;
+  width: 50%;
+  margin: 0 auto;
+  font-size: 1.4em;
 
     .items{
         margin-top: 1em;
         display: flex;
         flex-direction: column;
-        border-bottom: solid 1px black;
+        justify-content: space-evenly;
+        border-left: solid 2px #FA7762;;
+        padding-left: 1em;
 
         .name {
-            margin: .2em;
+          margin: .5em;
           }
     
           .phone {
-            margin: .2em;
+            margin: .5em;
           }
         
           .email {
-            margin: .2em;
+            margin: .5em;
           }
         
         
           .updatedDate {
-            margin: .2em;
+            margin: .5em;
           }
           
           .createdDate {
-            margin: .2em;
+            margin: .5em;
           }
     }
 }

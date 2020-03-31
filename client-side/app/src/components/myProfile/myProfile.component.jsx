@@ -35,7 +35,7 @@ class MyProfile extends React.Component {
         const { profile, isLoading } = this.state
         return (
             <div className='profile'>
-                <h4> Στοιχεια Χρήστη: </h4>
+                <h4> Ο λογαριασμός μου: </h4>
                 {isLoading ? (<h4>isLoading...</h4>) :
                     (
                         <div className='items'>

@@ -8,6 +8,8 @@ import Examinations from './pages/examinations/examinations.compnent'
 import HomePage from './pages/homapege/homepage.component'
 import CreateExamination from './components/create-examination/create-examination.component'
 import MyProfile from './components/myProfile/myProfile.component'
+import axios from 'axios'
+
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -16,17 +18,34 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      currentToken: null
+      currentUser: null
     }
   }
 
+  getLoggedInUserDetails = async () => {
+    const url = 'http://localhost:3000/users/me'
+
+    const token = localStorage.getItem('token');
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+
+    const profile = await axios.get(url, config)
+
+    this.setState({
+      currentUser: profile.data
+    }, () => {
+      console.log(this.state)
+    })
+
+  }
+
   componentDidMount() {
-    // const token = localStorage.getItem('token')
-    // this.setState({
-    //   currentToken: token
-    // }, () => {
-    //   console.log(this.state)
-    // })
+
+    this.getLoggedInUserDetails()
 
 
     getExaminations()
@@ -36,10 +55,10 @@ class App extends React.Component {
 
 
   render() {
-    const { currentToken } = this.state
+    const { currentUser } = this.state
     return (
       <div className='App'>
-        <Header currentToken={currentToken} />
+        <Header currentUser={currentUser} />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/examinations' component={Examinations} />

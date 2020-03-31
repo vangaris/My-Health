@@ -56,7 +56,6 @@ class Signin extends React.Component {
                     </div>
                 </form>
             </div>
-
         )
     }
 }
