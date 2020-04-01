@@ -39,27 +39,26 @@
   }
 
   .top-right-menu{
-    background-color: #3A96DD;
-    width: 10%;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    height: 3em;
+    // background-color: #3A96DD;
+    // width: 10%;
+    // text-decoration: none;
+    // display: flex;
+    // flex-direction: column;
+    // height: 3em;
 
     .option-top-right {
-      padding: .2em;
+ 
       margin: 0 auto;
       text-decoration: none;
       color: white;
       font-size: .8em;
+      cursor: pointer;
 
+      div:hover{
+        border-bottom:solid 1px #FA7762;
+      }
       
     }
 
-    a:hover{
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-  }
+}
 }

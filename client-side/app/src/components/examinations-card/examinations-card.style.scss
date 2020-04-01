@@ -29,9 +29,21 @@
       }
 
       .description {
-        border-top:solid 2px #FA7762;
         margin-top: 1em;
         padding-top: 1em;
+      }
+
+      .buttons{
+        border-top:solid 2px gray;
+        padding-top: 2em;
+        display: flex;
+        margin-top: 2em;
+        justify-content: space-evenly;
+
+        button:hover{
+          color: white;
+          border: none;
+        }
       }
     }
   

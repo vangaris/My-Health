@@ -1,7 +1,20 @@
-.examinations{
-    margin: 0 auto;
+.containerExaminations{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+
+    .filter{
+        margin: 0 auto;
+        margin-bottom: 2em;
+    }
+
+    .examinations{
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
 
 }
+
+
+

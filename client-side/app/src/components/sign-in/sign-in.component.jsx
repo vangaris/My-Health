@@ -3,6 +3,7 @@ import FormInput from '../../components/form-input/form-input.component'
 import './sign-in.style.scss'
 import CustomButton from '../../components/custom-button/custom-button.component'
 import { login } from '../../database/utils'
+import { withRouter } from 'react-router-dom';
 
 class Signin extends React.Component {
     constructor(props) {
@@ -31,9 +32,8 @@ class Signin extends React.Component {
             })
 
             localStorage.setItem('token', this.state.token)
+            this.props.history.push('/')
         }
-
-        //this.setState({ email: '', password: '' })
     }
 
     handleChange = event => {
@@ -52,7 +52,7 @@ class Signin extends React.Component {
                     <FormInput type='email' name='email' value={email} onChange={this.handleChange} label={'Εmail'} required />
                     <FormInput type='password' name='password' value={password} handleChange={this.handleChange} label={'Password'} required />
                     <div className='buttons'>
-                        <CustomButton type='submit'> Sign in </CustomButton>
+                        <CustomButton type='submit' > Sign in </CustomButton>
                     </div>
                 </form>
             </div>
@@ -60,4 +60,4 @@ class Signin extends React.Component {
     }
 }
 
-export default Signin
+export default withRouter(Signin)

@@ -2,6 +2,7 @@ import React from 'react'
 import { getExaminations } from '../../database/utils'
 import ExaminationCard from '../../components/examinations-card/examinations-card.component'
 import './examinations.style.scss'
+import CustomButton from '../../components/custom-button/custom-button.component'
 
 
 class Examinations extends React.Component {
@@ -10,7 +11,8 @@ class Examinations extends React.Component {
 
         this.state = {
             examinations: [{}],
-            isLoading: true
+            isLoading: true,
+            completed: false
         }
     }
 
@@ -27,17 +29,31 @@ class Examinations extends React.Component {
         }
     }
 
+    handleExaminationFilter = () => {
+        this.setState({
+            completed: !this.state.completed
+        }, console.log(this.state))
+    }
+
     componentDidMount() {
         this.geturrentUser()
     }
 
     render() {
-        const { examinations, isLoading } = this.state
+        const { completed, examinations, isLoading } = this.state
         return (
-            <div className='examinations'>
-                {examinations.map(({ _id, ...examinationsProps }, index) => {
-                    return <ExaminationCard key={index} {...examinationsProps} id={_id} isLoading={isLoading} />
-                })}
+            <div className='containerExaminations'> {completed ? (<div className='filter'><CustomButton onClick={() => this.handleExaminationFilter()}> Εκρεμμούν </CustomButton></div>)
+                : (<div className='filter'> <CustomButton onClick={() => this.handleExaminationFilter()}> Ολοκληρωμένες </CustomButton></div>)}
+                <div className='examinations'>
+                    {completed ? (examinations.filter(({ completed }) => completed).map(({ _id, ...examinationsProps }, index) => {
+                        return <ExaminationCard key={index} {...examinationsProps} id={_id} isLoading={isLoading} />
+                    }))
+                        : (
+                            examinations.filter(item => !item.completed).map(({ _id, ...examinationsProps }, index) => {
+                                return <ExaminationCard key={index} {...examinationsProps} id={_id} isLoading={isLoading} />
+                            })
+                        )}
+                </div>
             </div>
         )
     }

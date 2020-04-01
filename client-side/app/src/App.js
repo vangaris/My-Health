@@ -43,6 +43,15 @@ class App extends React.Component {
 
   }
 
+  logOut = () => {
+
+    localStorage.removeItem('token')
+
+    this.setState({
+      currentUser: null
+    })
+  }
+
   componentDidMount() {
 
     this.getLoggedInUserDetails()
@@ -58,7 +67,7 @@ class App extends React.Component {
     const { currentUser } = this.state
     return (
       <div className='App'>
-        <Header currentUser={currentUser} />
+        <Header logOut={this.logOut} currentUser={currentUser} />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/examinations' component={Examinations} />
