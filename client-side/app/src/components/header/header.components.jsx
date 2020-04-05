@@ -2,7 +2,8 @@ import React from 'react'
 import './header.style.scss'
 import { ReactComponent as Logo } from '../../assets/stethoscope.svg'
 
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+
 
 class Header extends React.Component {
 
@@ -20,6 +21,7 @@ class Header extends React.Component {
 
 
     render() {
+        console.log(this.props.currentUser)
         return (
             <div className="header">
                 <Link className='logo-container' to='/'>
@@ -32,11 +34,9 @@ class Header extends React.Component {
                     <Link className='option' to="/createExamination">
                         Προσθήκη
                 </Link>
-                </div>
-                <div className="top-right-menu">
                     {
-                        this.props.currentUser != null ? (<Link className='option-top-right' to="/myprofile">
-                            Λογαριασμός
+                        this.props.currentUser != null ? (<Link className='option' to="/myprofile">
+                            {this.props.currentUser.name}
                         </Link>) :
                             (
                                 null
@@ -45,12 +45,15 @@ class Header extends React.Component {
 
                     {
                         this.props.currentUser != null ? (
-                            <div className='option-top-right' onClick={() => this.props.logOut()}> Έξοδος </div>
+                            <div className='option' onClick={() => {
+                                this.props.logOut()
+
+
+                            }}> Εξοδος </div>
                         ) : (
-                                <Link className='option-top-right' to='/sign-up-sign-in'> Είσοδος </Link>)
+                                <Link className='option' to='/sign-up-sign-in'> Είσοδος </Link>)
                     }
                 </div>
-
             </div>
         )
     }

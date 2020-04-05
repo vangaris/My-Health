@@ -5,6 +5,7 @@ const auth = require('../middleware/auth')
 var cors = require('cors');
 
 router.options("/examinations", cors());
+router.options("/examinations/:id", cors());
 
 router.get("/test", (req, res) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -12,7 +13,7 @@ router.get("/test", (req, res) => {
 })
 
 router.delete('/examinations/:id', auth, async (req, res) => {
-
+    res.header('Access-Control-Allow-Origin', '*');
     const id = req.params.id
     try {
         const examination = await Examination.findOneAndDelete({ _id: id, owner: req.user._id })
@@ -31,7 +32,9 @@ router.delete('/examinations/:id', auth, async (req, res) => {
 })
 
 router.patch("/examinations/:id", auth, async (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
     const updates = Object.keys(req.body);
+    console.log('updates:', updates)
     const allowedUpdates = ["description", "completed"];
 
     const isValidOperation = updates.every(update =>
@@ -47,6 +50,7 @@ router.patch("/examinations/:id", auth, async (req, res) => {
     try {
 
         const examination = await Examination.findOne({ _id: req.params.id, owner: req.user._id })
+        console.log('examinations:', examination)
 
         if (!examination) {
             return res.status(404).send();

@@ -1,7 +1,7 @@
 .header {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   font-size: 1.4em;
   background-color: #182534;
   padding: 1em;
@@ -27,13 +27,18 @@
       color: white;
       padding: 1em;
       text-decoration: none;
+      cursor: pointer;
     }
 
     
     a:hover{
       padding-bottom: 1em;
       border-bottom:solid 1px #FA7762;
-      cursor: pointer;
+    }
+
+    div:hover{
+      padding-bottom: 1em;
+      border-bottom:solid 1px #FA7762;
     }
 
   }

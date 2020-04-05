@@ -3,6 +3,7 @@ import { getExaminations } from '../../database/utils'
 import ExaminationCard from '../../components/examinations-card/examinations-card.component'
 import './examinations.style.scss'
 import CustomButton from '../../components/custom-button/custom-button.component'
+import { updateExamination, deleteExamination } from './utils'
 
 
 class Examinations extends React.Component {
@@ -12,7 +13,8 @@ class Examinations extends React.Component {
         this.state = {
             examinations: [{}],
             isLoading: true,
-            completed: false
+            completed: false,
+            status: false
         }
     }
 
@@ -23,8 +25,6 @@ class Examinations extends React.Component {
             this.setState({
                 examinations: userExaminations,
                 isLoading: false
-            }, () => {
-                console.log(this.state)
             })
         }
     }
@@ -32,7 +32,29 @@ class Examinations extends React.Component {
     handleExaminationFilter = () => {
         this.setState({
             completed: !this.state.completed
-        }, console.log(this.state))
+        })
+    }
+
+    handleStatus = async (id) => {
+        this.state.examinations.forEach(async exam => {
+            if (exam._id == id) {
+                await updateExamination(!exam.completed, id)
+                this.setState({
+                    status: !this.state.status
+                })
+            }
+        })
+    }
+
+    handleDelete = async (id) => {
+        this.state.examinations.forEach(exam => {
+            if (exam._id == id) {
+                deleteExamination(id)
+                this.setState({
+                    status: !this.state.status
+                })
+            }
+        })
     }
 
     componentDidMount() {
@@ -42,15 +64,16 @@ class Examinations extends React.Component {
     render() {
         const { completed, examinations, isLoading } = this.state
         return (
-            <div className='containerExaminations'> {completed ? (<div className='filter'><CustomButton onClick={() => this.handleExaminationFilter()}> Εκρεμμούν </CustomButton></div>)
-                : (<div className='filter'> <CustomButton onClick={() => this.handleExaminationFilter()}> Ολοκληρωμένες </CustomButton></div>)}
+            <div className='containerExaminations'> {completed
+                ? (<div className='filter'> <span> Ολοκληρωμένες Εξετάσεις </span><CustomButton onClick={() => this.handleExaminationFilter()}> αλλαγη σε μη </CustomButton></div>)
+                : (<div className='filter'> <span> Μη Ολοκληρωμένες Εξετάσεις </span> <CustomButton onClick={() => this.handleExaminationFilter()}> Ολοκληρωμένες </CustomButton></div>)}
                 <div className='examinations'>
                     {completed ? (examinations.filter(({ completed }) => completed).map(({ _id, ...examinationsProps }, index) => {
-                        return <ExaminationCard key={index} {...examinationsProps} id={_id} isLoading={isLoading} />
+                        return <ExaminationCard key={index} handleDelete={this.handleDelete} handleStatus={this.handleStatus} {...examinationsProps} id={_id} isLoading={isLoading} />
                     }))
                         : (
                             examinations.filter(item => !item.completed).map(({ _id, ...examinationsProps }, index) => {
-                                return <ExaminationCard key={index} {...examinationsProps} id={_id} isLoading={isLoading} />
+                                return <ExaminationCard key={index} handleDelete={this.handleDelete} handleStatus={this.handleStatus} {...examinationsProps} id={_id} isLoading={isLoading} />
                             })
                         )}
                 </div>
