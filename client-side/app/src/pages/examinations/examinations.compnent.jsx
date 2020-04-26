@@ -1,6 +1,5 @@
 import React from "react";
 import { getExaminations } from "../../database/utils";
-import ExaminationCard from "../../components/examinations-card/examinations-card.component";
 import "./examinations.style.scss";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import { updateExamination, deleteExamination } from "../../database/utils";
@@ -62,61 +61,72 @@ class Examinations extends React.Component {
 
   render() {
     const { completed, examinations, isLoading } = this.state;
-    return (
-      <div className="containerExaminations">
-        {" "}
-        {completed ? (
-          <div className="filter">
-            {" "}
-            <span> Ολοκληρωμένες Εξετάσεις </span>
-            <CustomButton onClick={() => this.handleExaminationFilter()}>
-              {" "}
-              αλλαγη σε μη{" "}
-            </CustomButton>
-          </div>
-        ) : (
-          <div className="filter">
-            {" "}
-            <span> Μη Ολοκληρωμένες Εξετάσεις </span>{" "}
-            <CustomButton onClick={() => this.handleExaminationFilter()}>
-              {" "}
-              Ολοκληρωμένες{" "}
-            </CustomButton>
-          </div>
-        )}
-        <div className="examinations">
-          {completed
-            ? examinations
-                .filter(({ completed }) => completed)
-                .map(({ _id, ...examinationsProps }, index) => {
-                  return (
-                    <ExaminationCard
-                      key={index}
-                      handleDelete={this.handleDelete}
-                      handleStatus={this.handleStatus}
-                      {...examinationsProps}
-                      id={_id}
-                      isLoading={isLoading}
-                    />
-                  );
-                })
-            : examinations
-                .filter((item) => !item.completed)
-                .map(({ _id, ...examinationsProps }, index) => {
-                  return (
-                    <ExaminationCard
-                      key={index}
-                      handleDelete={this.handleDelete}
-                      handleStatus={this.handleStatus}
-                      {...examinationsProps}
-                      id={_id}
-                      isLoading={isLoading}
-                    />
-                  );
-                })}
+
+    if (completed) {
+      return (
+        <div className="filter">
+          <span> Ολοκληρωμένες Εξετάσεις </span>
+          <CustomButton onClick={() => this.handleExaminationFilter()}>
+            αλλαγη σε μη
+          </CustomButton>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="filter">
+          <span> Μη Ολοκληρωμένες Εξετάσεις </span>{" "}
+          <CustomButton onClick={() => this.handleExaminationFilter()}>
+            Ολοκληρωμένες
+          </CustomButton>
+        </div>
+      );
+    }
+
+    //   return (
+    //     <div className="containerExaminations">
+    //       {completed ? (
+    //         <div className="filter">
+    //           <span> Ολοκληρωμένες Εξετάσεις </span>
+    //           <CustomButton onClick={() => this.handleExaminationFilter()}>
+    //             αλλαγη σε μη
+    //           </CustomButton>
+    //         </div>
+    //       ) : (
+
+    //       )}
+    //       <div className="examinations">
+    //         {completed
+    //           ? examinations
+    //               .filter(({ completed }) => completed)
+    //               .map(({ _id, ...examinationsProps }, index) => {
+    //                 return (
+    //                   <ExaminationCard
+    //                     key={index}
+    //                     handleDelete={this.handleDelete}
+    //                     handleStatus={this.handleStatus}
+    //                     {...examinationsProps}
+    //                     id={_id}
+    //                     isLoading={isLoading}
+    //                   />
+    //                 );
+    //               })
+    //           : examinations
+    //               .filter((item) => !item.completed)
+    //               .map(({ _id, ...examinationsProps }, index) => {
+    //                 return (
+    //                   <ExaminationCard
+    //                     key={index}
+    //                     handleDelete={this.handleDelete}
+    //                     handleStatus={this.handleStatus}
+    //                     {...examinationsProps}
+    //                     id={_id}
+    //                     isLoading={isLoading}
+    //                   />
+    //                 );
+    //               })}
+    //       </div>
+    //     </div>
+    //   );
   }
 }
 export default Examinations;

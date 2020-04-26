@@ -17,17 +17,18 @@ class SignInAndSingUpPage extends React.Component {
   }
 
   render() {
+    const { signinUser } = this.props;
     return (
       <div className="sing-in-sign-up-page">
         <button
           onClick={() => {
-            this.props.signinUser();
+            signinUser();
           }}
         >
-          test{" "}
+          test
         </button>
         <SingUp />
-        <Singin />
+        <Singin signin={signinUser} />
       </div>
     );
   }

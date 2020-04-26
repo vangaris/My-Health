@@ -38,11 +38,8 @@ class App extends React.Component {
     });
   };
 
-  signinUser = () => {
-    // this.setState({
-    //   currentUser: this.state.currentUser,
-    // });
-    alert("aaa");
+  signinUser = async () => {
+    this.checkIfUserIsAuthenticated();
   };
 
   componentDidMount() {
@@ -71,12 +68,6 @@ class App extends React.Component {
                 signinUser={this.signinUser}
                 {...props}
               />
-            )}
-          />
-          <Route
-            path="/singin"
-            render={(props) => (
-              <Signin SigninUser={this.SigninUser} {...props} />
             )}
           />
           <Route path="/createExamination" component={CreateExamination} />

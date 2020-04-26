@@ -24,20 +24,28 @@ class Header extends React.Component {
           <Logo className="logo" />
         </Link>
         <div className="options">
-          <Link className="option" to="/examinations">
-            Οι εξετάσεις μου
-          </Link>
-          <Link className="option" to="/createExamination">
-            Προσθήκη
-          </Link>
           {this.props.currentUser != null ? (
-            <Link className="option" to="/myprofile">
+            <Link className="option" to="/examinations">
+              Οι εξετάσεις μου
+            </Link>
+          ) : null}
+          <div className="options">
+            {" "}
+            {this.props.currentUser != null ? (
+              <Link className="option" to="/createExamination">
+                Προσθήκη
+              </Link>
+            ) : null}
+          </div>
+
+          {this.props.currentUser != null ? (
+            <Link className="name" to="/myprofile">
               {this.props.currentUser.name}
             </Link>
           ) : null}
           {this.props.currentUser != null ? (
             <div
-              className="option"
+              className="signin-logout"
               onClick={() => {
                 this.props.logOut();
               }}
@@ -45,7 +53,7 @@ class Header extends React.Component {
               Εξοδος
             </div>
           ) : (
-            <Link className="option" to="/sign-up-sign-in">
+            <Link className="signin-logout" to="/sign-up-sign-in">
               Είσοδος
             </Link>
           )}

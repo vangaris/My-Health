@@ -51,6 +51,7 @@ class Signin extends React.Component {
 
   render() {
     const { email, password } = this.state;
+    const { signin } = this.props;
 
     return (
       <div className="sign-in">
@@ -74,7 +75,15 @@ class Signin extends React.Component {
             required
           />
           <div className="buttons">
-            <CustomButton type="submit"> Sign in </CustomButton>
+            <CustomButton
+              onClick={() => {
+                signin();
+              }}
+              type="submit"
+            >
+              {" "}
+              Sign in{" "}
+            </CustomButton>
           </div>
         </form>
       </div>
