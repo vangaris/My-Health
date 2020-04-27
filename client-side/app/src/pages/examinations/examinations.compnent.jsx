@@ -1,17 +1,23 @@
 import React from "react";
-import { getExaminations } from "../../database/utils";
 import "./examinations.style.scss";
+import {
+  updateExamination,
+  deleteExamination,
+  getExaminations,
+} from "../../database/utils";
+
 import CustomButton from "../../components/custom-button/custom-button.component";
-import { updateExamination, deleteExamination } from "../../database/utils";
+import ExaminationCard from "../../components/examinations-card/examinations-card.component";
 
 class Examinations extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      examinations: [{}],
+      examinations: [],
       isLoading: true,
       completed: false,
+      nonCompleted: false,
       status: false,
     };
   }
@@ -31,6 +37,20 @@ class Examinations extends React.Component {
     this.setState({
       completed: !this.state.completed,
     });
+  };
+
+  showingCompletedExaminations = (event) => {
+    const { value } = event.target;
+
+    this.setState({ completed: !this.state.completed });
+    console.log(value);
+  };
+
+  showingNonCompletedExaminations = (event) => {
+    const { value } = event.target;
+
+    this.setState({ nonCompleted: !this.state.nonCompleted });
+    console.log(value);
   };
 
   handleStatus = async (id) => {
@@ -61,72 +81,59 @@ class Examinations extends React.Component {
 
   render() {
     const { completed, examinations, isLoading } = this.state;
-
-    if (completed) {
-      return (
-        <div className="filter">
-          <span> Ολοκληρωμένες Εξετάσεις </span>
-          <CustomButton onClick={() => this.handleExaminationFilter()}>
-            αλλαγη σε μη
-          </CustomButton>
-        </div>
-      );
-    } else {
-      return (
-        <div className="filter">
-          <span> Μη Ολοκληρωμένες Εξετάσεις </span>{" "}
-          <CustomButton onClick={() => this.handleExaminationFilter()}>
-            Ολοκληρωμένες
-          </CustomButton>
-        </div>
-      );
+    if (this.props.currentUser === null) {
+      return <h5>Loading ...</h5>;
     }
 
-    //   return (
-    //     <div className="containerExaminations">
-    //       {completed ? (
-    //         <div className="filter">
-    //           <span> Ολοκληρωμένες Εξετάσεις </span>
-    //           <CustomButton onClick={() => this.handleExaminationFilter()}>
-    //             αλλαγη σε μη
-    //           </CustomButton>
-    //         </div>
-    //       ) : (
-
-    //       )}
-    //       <div className="examinations">
-    //         {completed
-    //           ? examinations
-    //               .filter(({ completed }) => completed)
-    //               .map(({ _id, ...examinationsProps }, index) => {
-    //                 return (
-    //                   <ExaminationCard
-    //                     key={index}
-    //                     handleDelete={this.handleDelete}
-    //                     handleStatus={this.handleStatus}
-    //                     {...examinationsProps}
-    //                     id={_id}
-    //                     isLoading={isLoading}
-    //                   />
-    //                 );
-    //               })
-    //           : examinations
-    //               .filter((item) => !item.completed)
-    //               .map(({ _id, ...examinationsProps }, index) => {
-    //                 return (
-    //                   <ExaminationCard
-    //                     key={index}
-    //                     handleDelete={this.handleDelete}
-    //                     handleStatus={this.handleStatus}
-    //                     {...examinationsProps}
-    //                     id={_id}
-    //                     isLoading={isLoading}
-    //                   />
-    //                 );
-    //               })}
-    //       </div>
-    //     </div>
-    //   );
+    return (
+      <>
+        <input
+          type="checkbox"
+          onChange={this.showingCompletedExaminations}
+          name="completed"
+          value={this.state.completed}
+        />
+        <label> Ολοκληρωμένες</label>
+        <input
+          type="checkbox"
+          onChange={this.showingNonCompletedExaminations}
+          name="uncompleted"
+          value={this.state.nonCompleted}
+        />{" "}
+        <label> μη Ολοκληρωμένες</label>
+        <div className="examinations">
+          {completed
+            ? examinations
+                .filter(({ completed }) => completed)
+                .map(({ _id, ...examinationsProps }, index) => {
+                  return (
+                    <ExaminationCard
+                      key={index}
+                      handleDelete={this.handleDelete}
+                      handleStatus={this.handleStatus}
+                      {...examinationsProps}
+                      id={_id}
+                      isLoading={isLoading}
+                    />
+                  );
+                })
+            : examinations
+                .filter((item) => !item.completed)
+                .map(({ _id, ...examinationsProps }, index) => {
+                  return (
+                    <ExaminationCard
+                      key={index}
+                      handleDelete={this.handleDelete}
+                      handleStatus={this.handleStatus}
+                      {...examinationsProps}
+                      id={_id}
+                      isLoading={isLoading}
+                    />
+                  );
+                })}
+        </div>
+      </>
+    );
   }
 }
 export default Examinations;
