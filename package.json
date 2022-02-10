@@ -29,7 +29,7 @@
     "moment": "^2.24.0",
     "mongodb": "^3.5.2",
     "mongoose": "^5.8.11",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react-datepicker": "^2.10.1",
     "react-router-dom": "^5.1.2",
     "validator": "^10.9.0"
